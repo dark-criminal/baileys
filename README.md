@@ -6,7 +6,6 @@
 ![NPM Downloads](https://img.shields.io/npm/dw/%40whiskeysockets%2Fbaileys?label=npm&color=%23CB3837)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dark-criminal/baileys)
 ![GitHub License](https://img.shields.io/github/license/dark-criminal/baileys)
-![Discord](https://img.shields.io/discord/725839806084546610?label=discord&color=%235865F2)
 ![GitHub Repo stars](https://img.shields.io/github/stars/dark-criminal/baileys)
 ![GitHub forks](https://img.shields.io/github/forks/dark-criminal/baileys)
 
