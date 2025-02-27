@@ -2,7 +2,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
 import { UserFacingSocketConfig } from '../Types';
-declare const makeWASocket: (config: UserFacingSocketConfig) => {
+declare const makeLKSocket: (config: UserFacingSocketConfig) => {
     logger: import("pino").Logger<import("pino").LoggerOptions>;
     getOrderDetails: (orderId: string, tokenBase64: string) => Promise<import("../Types").OrderDetails>;
     getCatalog: ({ jid, limit, cursor }: import("../Types").GetCatalogOptions) => Promise<{
@@ -145,4 +145,4 @@ declare const makeWASocket: (config: UserFacingSocketConfig) => {
     waitForConnectionUpdate: (check: (u: Partial<import("../Types").ConnectionState>) => boolean | undefined, timeoutMs?: number | undefined) => Promise<void>;
     sendWAMBuffer: (wamBuffer: Buffer) => Promise<import("..").BinaryNode>;
 };
-export default makeWASocket;
+export default makeLKSocket;

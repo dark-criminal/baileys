@@ -51,7 +51,7 @@ yarn add github:dark-criminal/baileys
 
 Then import the default function in your code:
 ```ts 
-import makeWASocket from '@dark-criminal/baileys'
+import makeLKSocket from '@dark-criminal/baileys'
 ```
 
 # Index
@@ -175,9 +175,9 @@ WhatsApp provides a multi-device API that allows Baileys to be authenticated as 
 > You can customize browser name if you connect with **QR-CODE**, with `Browser` constant, we have some browsers config, **see [here](https://baileys.whiskeysockets.io/types/BrowsersMap.html)**
 
 ```ts
-import makeWASocket from '@dark-criminal/baileys'
+import makeLKSocket from '@dark-criminal/baileys'
 
-const sock = makeWASocket({
+const sock = makeLKSocket({
     // can provide additional config here
     browser: Browsers.ubuntu('My App'),
     printQRInTerminal: true
@@ -195,9 +195,9 @@ If the connection is successful, you will see a QR code printed on your terminal
 The phone number can't have `+` or `()` or `-`, only numbers, you must provide country code
 
 ```ts
-import makeWASocket from '@dark-criminal/baileys'
+import makeLKSocket from '@dark-criminal/baileys'
 
-const sock = makeWASocket({
+const sock = makeLKSocket({
     // can provide additional config here
     printQRInTerminal: false //need to be false
 })
@@ -216,7 +216,7 @@ if (!sock.authState.creds.registered) {
     - If you'd like to emulate a desktop connection (and receive more message history), this browser setting to your Socket config:
 
 ```ts
-const sock = makeWASocket({
+const sock = makeLKSocket({
     ...otherOpts,
     // can use Windows, Ubuntu here too
     browser: Browsers.macOS('Desktop'),
@@ -232,7 +232,7 @@ const sock = makeWASocket({
     ```ts
     const groupCache = new NodeCache({stdTTL: 5 * 60, useClones: false})
 
-    const sock = makeWASocket({
+    const sock = makeLKSocket({
         cachedGroupMetadata: async (jid) => groupCache.get(jid)
     })
 
@@ -250,7 +250,7 @@ const sock = makeWASocket({
 ### Improve Retry System & Decrypt Poll Votes
 - If you want to improve sending message, retrying when error occurs and decrypt poll votes, you need to have a store and set `getMessage` config in socket like this:
     ```ts
-    const sock = makeWASocket({
+    const sock = makeLKSocket({
         getMessage: async (key) => await getMessageFromStore(key)
     })
     ```
@@ -258,7 +258,7 @@ const sock = makeWASocket({
 ### Receive Notifications in Whatsapp App
 - If you want to receive notifications in whatsapp app, set `markOnlineOnConnect` to `false`
     ```ts
-    const sock = makeWASocket({
+    const sock = makeLKSocket({
         markOnlineOnConnect: false
     })
     ```
@@ -268,13 +268,13 @@ You obviously don't want to keep scanning the QR code every time you want to con
 
 So, you can load the credentials to log back in:
 ```ts
-import makeWASocket, { useMultiFileAuthState } from '@dark-criminal/baileys'
+import makeLKSocket, { useMultiFileAuthState } from '@dark-criminal/baileys'
 
 const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys')
 
 // will use the given state to connect
 // so if valid credentials are available -- it'll connect without QR
-const sock = makeWASocket({ auth: state })
+const sock = makeLKSocket({ auth: state })
 
 // this will be called as soon as the credentials are updated
 sock.ev.on('creds.update', saveCreds)
@@ -296,7 +296,7 @@ They're all nicely typed up, so you shouldn't have any issues with an Intellisen
 
 You can listen to these events like this:
 ```ts
-const sock = makeWASocket()
+const sock = makeLKSocket()
 sock.ev.on('messages.upsert', ({ messages }) => {
     console.log('got messages', messages)
 })
@@ -308,12 +308,12 @@ sock.ev.on('messages.upsert', ({ messages }) => {
 > This example includes basic auth storage too
 
 ```ts
-import makeWASocket, { DisconnectReason, useMultiFileAuthState } from '@dark-criminal/baileys'
+import makeLKSocket, { DisconnectReason, useMultiFileAuthState } from '@dark-criminal/baileys'
 import { Boom } from '@hapi/boom'
 
 async function connectToWhatsApp () {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys')
-    const sock = makeWASocket({
+    const sock = makeLKSocket({
         // can provide additional config here
         auth: state,
         printQRInTerminal: true
@@ -390,7 +390,7 @@ sock.ev.on('messages.update', event => {
 It can be used as follows:
 
 ```ts
-import makeWASocket, { makeInMemoryStore } from '@dark-criminal/baileys'
+import makeLKSocket, { makeInMemoryStore } from '@dark-criminal/baileys'
 // the store maintains the data of the WA connection in memory
 // can be written out to a file & read from it
 const store = makeInMemoryStore({ })
@@ -401,7 +401,7 @@ setInterval(() => {
     store.writeToFile('./baileys_store.json')
 }, 10_000)
 
-const sock = makeWASocket({ })
+const sock = makeLKSocket({ })
 // will listen from this socket
 // the store can listen from a new socket once the current socket outlives its lifetime
 store.bind(sock.ev)
@@ -1200,7 +1200,7 @@ Baileys is written with custom functionality in mind. Instead of forking the pro
 ### Enabling Debug Level in Baileys Logs
 First, enable the logging of unhandled messages from WhatsApp by setting:
 ```ts
-const sock = makeWASocket({
+const sock = makeLKSocket({
     logger: P({ level: 'debug' }),
 })
 ```

@@ -1,4 +1,4 @@
-import makeWASocket from './Socket';
+import makeLKSocket from './Socket';
 export * from '../WAProto';
 export * from './Utils';
 export * from './Types';
@@ -7,6 +7,6 @@ export * from './Defaults';
 export * from './WABinary';
 export * from './WAM';
 export * from './WAUSync';
-export type WASocket = ReturnType<typeof makeWASocket>;
-export { makeWASocket };
-export default makeWASocket;
+export type WASocket = ReturnType<typeof makeLKSocket>;
+export { makeLKSocket };
+export default makeLKSocket;
