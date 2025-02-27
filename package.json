@@ -1,6 +1,6 @@
 {
-  "name": "@darkcriminal/baileys",
-  "version": "3.0.0",
+  "name": "@dark-criminal/baileys",
+  "version": "4.0.0",
   "description": "WhatsApp API",
   "keywords": [
     "whatsapp",
@@ -14,7 +14,7 @@
   ],
   "homepage": "https://github.com/dark-criminal/baileys",
   "repository": {
-    "url": "git@github.com/dark-criminal/baileys.git"
+    "url": "git@github.com:dark-criminal/baileys.git"
   },
   "license": "MIT",
   "author": "Nimesh Piyumal",

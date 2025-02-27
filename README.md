@@ -2,8 +2,6 @@
 
 <div align='center'>
 
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/dark-criminal/baileys/total)
-![NPM Downloads](https://img.shields.io/npm/dw/%40whiskeysockets%2Fbaileys?label=npm&color=%23CB3837)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dark-criminal/baileys)
 ![GitHub License](https://img.shields.io/github/license/dark-criminal/baileys)
 ![GitHub Repo stars](https://img.shields.io/github/stars/dark-criminal/baileys)
@@ -51,15 +49,10 @@ Use the edge version (no guarantee of stability, but latest fixes + features)
 yarn add github:dark-criminal/baileys
 ```
 
-Then import your code using:
+Then import the default function in your code:
 ```ts 
 import makeWASocket from '@dark-criminal/baileys'
 ```
-
-# Links
-
-- [Discord](https://discord.gg/WeJM5FP9GG)
-- [Docs](https://guide.whiskeysockets.io/)
 
 # Index
 
@@ -208,7 +201,7 @@ const sock = makeWASocket({
     // can provide additional config here
     printQRInTerminal: false //need to be false
 })
-
+// NOTE: WAIT TILL QR EVENT BEFORE REQUESTING THE PAIRING CODE
 if (!sock.authState.creds.registered) {
     const number = 'XXXXXXXXXXX'
     const code = await sock.requestPairingCode(number)
@@ -583,7 +576,7 @@ await sock.sendMessage(
 await sock.sendMessage(
     jid,
     {
-        text: 'Hi, this was sent using https://github.com/dark-criminal/baileys'
+        text: 'Hi, this was sent using https://github.com/whiskeysockets/baileys'
     }
 )
 ```
@@ -713,7 +706,7 @@ await sock.sendMessage(jid, {
 If you want to save the media you received
 ```ts
 import { createWriteStream } from 'fs'
-import { downloadMediaMessage, getContentType } from '@dark-criminal/baileys'
+import { downloadMediaMessage, getContentType } from 'baileys'
 
 sock.ev.on('messages.upsert', async ({ [m] }) => {
     if (!m.message) return // if there is no text or media message
